@@ -1,0 +1,18 @@
+<table class="table table-striped table-bordered table-condensed table-hover">
+    <thead>
+    <tr class="success">
+        <th>Venda sem desconto</th>
+        <th>venda com desconto</th>
+        <th>Ação</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody >
+        <tr  *ngFor="let v of listavendas$ | async" >
+        <td> {{v.venda}} </td>
+        <td> {{v.vendadesconto}} </td>
+        <td>  <button class="btn btn-success" >Alterar </button></td>
+        <td> <button class="btn btn-danger" >Excluir </button></td>
+        </tr>
+    </tbody>
+  </table>
