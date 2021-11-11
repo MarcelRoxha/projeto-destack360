@@ -7,7 +7,32 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
    background: linear-gradient(90deg,  #323232, #01637f, #666666);  
   }
 
+
+  
+
+  :host {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    }
+  
+  mat-drawer {
+    width: 260px;
+  }
+  mat-drawer-container {
+    height: 100%;
+  }
+  
+  mat-drawer {
+    background: #0f172a;
+  }
+  .form-control{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto; 
+}
 .form-signin {
+
     background: white;
     
     padding: 5px;
@@ -19,126 +44,66 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     margin-bottom: 1%;    
   }
 
-  @media (max-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-    body {
-      padding: 10px;
-       
-    }    
-    .nav-item {
-      color: black !important;
-    }
-
-    .menu-lateral{
-      margin-left: -250px;
-    }
-  }
-
-  .menu-lateral {
-    margin-top: -25px;
-    min-width: 200px;
-    max-width: 200px;
-    min-height: calc(100vh - 55px);
-    background: black;
-    transition: all 1.5s;
-    z-index: 1; 
-  }
-  .menu-lateral ul li a {
-    display: block;
-    color: blanchedalmond;
-    padding: 15px;
-    text-decoration: none;
-    transition: all 1.5s;
+  mat-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
   
-  .menu-lateral ul li a:hover {
-    color: #ecedee;
-    background: #354358;
-    padding: 20px;
-    border-radius: 2px;    
-    cursor: pointer;
+  ul li{
+    
+      list-style: none;
+   
+  }
+  button {
+    outline: none;
+    border: 0;
+    background: transparent;
+  }
+  .user {
+    font-size: 14px;
+  }
+  mat-toolbar {
+    background: #f7f7f7;
+  }
+  .user-image-icon {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;     
+    height: 18px;
+    font-size: 16px;
+   
+  }
+  
+  .user-image-icon ::ng-deep {
+   
+      width: 160px;
 
   }
 
-  .menu-lancamento{
-    margin-top: -25px;
-    min-width: 200px;
-    max-width: 200px;
-    min-height: calc(100vh - 55px);   
-    transition: all 1.5s;
-    z-index: 1;
+  .page {
+    color: white;
+    padding: 0 1rem;
+    background: #f1f5f9;    
   }
 
-  .menu-lancamento ul li a {
-    display: block;
+  .page__box{
+    min-height: 120px;
+    background: #1e293b;
+    margin: 0 -1rem;
+    font-size: 36px;
+  } 
+
+  .page__content{
+    min-height: calc(100vh - 178px);
+    border-radius: 10px;
+    margin-top: -2rem;
+    background: white;
     color: black;
-    padding: 15px;
-    text-decoration: none;
-    transition: all 1.5s;
+    font-size: 2rem;
   }
-  .menu-lancamento  ul li a:hover {
-    color: #ecedee;
-    background: #354358;
-    padding: 20px;
-    border-radius: 2px;    
-    cursor: pointer;
-
-  }
-
-  .titulo h3 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 48px;
-    margin-left: 100%;
-  }
-  input[type="checkbox"].checkmenu{
-    display: none;
-    position: absolute;
-  }
-
-  input[type="checkbox"]:checked ~ nav.menu-lateral{
-    transform: translateX(-350px);
-  }
-
-
-  .mat-icon{
-    font-size: 50px;
-    color: white;    
-    margin-top: -5px;
-    z-index: 1;
-    margin-top: -20px;
-    margin-left: 200px;
-    position: absolute;
-    transition: all 1.5s;
-   
-  }
-
-  label{
-    transition: all 1.5s;
-    opacity: 15%;
-  }
-  input[type="checkbox"]:checked ~ label{
-    transform: translateX(-200px);
-    opacity: 100%;     
-  }
-
-  .teste{
-    margin-left: 20px;
-    width: 400px;
-    height: 400px;
-   
-    background: red !important;
-  }
-
-  label.pgnAdmin{   
-    opacity: 100%;
-  }
-
-  input[type="checkbox"]:checked ~ section div .teste{
-    transform: translateX(-150px);
-       
-  }
-  .labelformlancer{
-    color: black !important;
+  .page__content-data{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }

@@ -1,28 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AuthService } from '../auth/auth-service.service';
-import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
-export class MenuComponent implements OnInit {
-  user: Observable<any>;  
-  loginForm: FormGroup; 
-  isProgressVisible: boolean;
-  lancerForm: FormGroup;
-  firebaseErrorMessage: string;
-  clickDashBoard = false; 
-  isOpen = false; 
-  clickEfetuarLancamentoSaida = false;
-  clickEfetuarLancamentoEntrada = false;
-  dataRecuperada : string;
+export class HeaderComponent implements OnInit {
 
+  @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
+
+  user: Observable<any>; 
+  isOpen = false; 
   isDisabled = false;
   clickCliente = false;   
   verificaUserLogado = false;         // Example: store the user's info here (Cloud Firestore: collection is 'users', docId is the user's email, lower case)
@@ -30,10 +22,11 @@ export class MenuComponent implements OnInit {
   constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore, private router : Router) {
     this.afAuth.authState.subscribe(user => {                                                   // grab the user object from Firebase Authorization
       if (user) {
-        let nomeDisplay = user.displayName
+        
         let emailLower = user.email;
         let emailFormat = emailLower?.toUpperCase();
         this.user = this.firestore.collection('users').doc(emailFormat).valueChanges();
+        let nomeDisplay = user.displayName        
         this.verificaUserLogado = true;
         console.log("Entrou um header: " + nomeDisplay)        // get the user's doc in Cloud Firestore
       }
@@ -51,27 +44,21 @@ export class MenuComponent implements OnInit {
           }
       });
   }
+  logout(): void {
+    this.afAuth.signOut();
+  
+}
+toggle(){
+this.isOpen = !this.isOpen;
+}
 
-  toggle(){
-    this.isOpen = !this.isOpen;
-    }
+clickcliente(){
+return this.clickCliente = !this.clickCliente;
+}
 
-    efetuarLancamentoSaida(){  
-      this.clickEfetuarLancamentoEntrada = !this.clickEfetuarLancamentoEntrada;        
-     return this.clickEfetuarLancamentoSaida = !this.clickEfetuarLancamentoSaida;
-           
-    }
+  toggleSidebar() {
+    this.toggleSidebarForMe.emit();
+  }
 
-    efetuarLancamentoEntrada(){
-      return this.router.navigate(['/lancar'])
-     
-    }
 
-    retornarData(){
-      console.log(this.lancerForm.value) 
-    }
-
-    acessarInicio(){
-      return this.router.navigate(['/dashboard'])
-    }
 }

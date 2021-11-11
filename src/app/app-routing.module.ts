@@ -1,3 +1,4 @@
+import { HomeUserComponent } from './home/home-user/home-user.component';
 import { SinginComponent } from './login/singin/singin.component';
 import { HomeAdminComponent } from './home/home-admin/home-admin.component';
 import { ContaSaidaComponent } from './conta/conta-saida/conta-saida.component';
@@ -19,7 +20,8 @@ import { AuthGuard } from './services/auth.guard';
 const routes: Routes = [
   
   { path: 'singin', component: SinginComponent},
-  { path: 'home', component: HomeComponent , canActivate: [AuthGuard]  }, // caminhos dos componentes a serem associados os links do app component
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'home-user', component: HomeUserComponent , canActivate: [AuthGuard]}, // caminhos dos componentes a serem associados os links do app component
   { path: 'calculo', component: CalculoComponent, canActivate: [AuthGuard]},
   { path: 'home-admin', component: HomeAdminComponent, canActivate: [AuthGuard]},
   { path: 'lampada', component: NgifComponent, canActivate: [AuthGuard]},

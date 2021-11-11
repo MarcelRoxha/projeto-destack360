@@ -1,0 +1,72 @@
+
+.mat-icon :host {
+          vertical-align: middle;
+      margin-right: 1rem;
+     }
+
+
+  .logo {
+    text-align: center;
+    padding: 2.6rem 1rem;
+    
+  }
+
+  body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background: linear-gradient(90deg,  #323232, #01637f, #666666);  
+   }
+  .logo img {
+    width: 200px;
+  }
+
+  .mat-divider {
+    border-top-width: 2px;
+    border-color: white;
+  }
+  .mat-list-item {
+    color: black!important;
+    font-size: 0.8rem;
+    height: 44px !important;
+    margin-bottom: 4px;
+    
+   
+  }
+
+  .mat-list-item-content ::ng-deep   {
+    border-radius: 5px;
+    margin: 0 8px;
+  }
+  .mat-list-item :hover {
+    color: #f2f5f7 !important;
+  }
+
+  .mat-list-item :hover {
+    background: black !important;
+  }
+
+  .list-item-active {
+     background: blue !important;
+     border-radius: 0 2rem 2rem 0; 
+  
+    color: #f2f5f7 !important;
+      
+    
+  }
+
+  .list-item-active :hover {
+       background: red;
+     }
+     .mat-list-item-content  ::ng-deep {
+        background: #2c3344 !important;
+     
+     }
+
+  .mat-subheader {
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 100;
+    letter-spacing: 1px;
+  }
+
+ mat-icon{
+    margin-left: 50px
+  }

@@ -23,90 +23,85 @@ export class AuthService {
     })
    }
 
-   loginUser(email: string, password: string): Promise<any>{
-     return this.afAuth.signInWithEmailAndPassword(email, password)
-     .then(()=>{
+   async loginUser(email: string, password: string): Promise<any>{
+     
+     try {
+       (await this.afAuth.signInWithEmailAndPassword(email, password));
        console.log('Auth Service: LoginUser: Success');
-
-     }).catch((error: { code: any; message: any; })=>{
-      console.log('Auth Service: LoginUser: Erro');
-      console.log('Error code' , error.code);
-      console.log('Erro:', error);
-      if(error.code){
-        return {isValid: false, message: error.message};  
-      }else{
-        return false;
-      }
-
-     })
+     } catch (error) {
+       console.log('Auth Service: LoginUser: Erro');
+       console.log('Error code', error);
+       console.log('Erro:', error);
+       if (error) {
+         return { isValid: false, message: error };
+       } else {
+         return false;
+       }
+     }
    }
 
 
-   signup(user: any): Promise<any> {
-     return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
-     .then((result: any)=>{
+   async signup(user: any): Promise<any> {
+     try {
+       const result = await this.afAuth.createUserWithEmailAndPassword(user.email, user.password);
        let emailLower = user.email.toLowerCase();
-       this.afs.collection('users').doc(emailLower).set({ 
-          accountType : 'endUser',    
-          displayName: user.displayName,
-          displayName_lower: user.displayName,
-          email: user.email, 
-          email_lower: emailLower
-        })
+       this.afs.collection('users').doc(emailLower).set({
+         accountType: 'endUser',
+         displayName: user.displayName,
+         displayName_lower: user.displayName,
+         email: user.email,
+         email_lower: emailLower
+       });
        user.sendEmailVerification();
-     }).catch((error: { code: any; message: any; })=>{
-      console.log('Auth Service: Signup: Erro');
-     
-      if(error.code){
-        return {isValid: false, message: error.message};  
-      }else{
-        return false;
-      }
+     } catch (error) {
+       console.log('Auth Service: Signup: Erro');
 
-    })
+       if (error) {
+         return { isValid: false, message: error };
+       } else {
+         return false;
+       }
+     }
 }
-eftLancerAnonimo(lancamento: any, emailUsuario : string, check: boolean): Promise<any> {
+  async eftLancerAnonimo(lancamento: any, emailUsuario : string, check: boolean): Promise<any> {
   
 
   if(check === true){
 
-    return this.afs.collection('users').doc(emailUsuario).collection('lancamento_entrada').doc().set({
-      data : lancamento.datalancamentoentrada,    
+    const resultado = await this.afs.collection('users').doc(emailUsuario).collection('lancamento_entrada').doc().set({
+      data: lancamento.datalancamentoentrada,
       valor: lancamento.valorlancamentoentrada,
       //codentrada: lancamento.codentrada,
       //codsaida: lancamento.codsaida, 
-      info: "Entrada Anonima" 
-    }).then((resultado: any) =>{
-      console.log("Resultado: ", resultado);
-      console.log(this.textoEntraAnonimo)
-    })
+      info: "Entrada Anonima"
+    });
+    console.log("Resultado: ", resultado);
+    console.log(this.textoEntraAnonimo);
   }
 
 
-  return this.afs.collection('users').doc(emailUsuario).collection('lancamento_entrada').doc().set({
-    data : lancamento.datalancamentoentrada,    
+  const resultado_1 = await this.afs.collection('users').doc(emailUsuario).collection('lancamento_entrada').doc().set({
+    data: lancamento.datalancamentoentrada,
     valor: lancamento.valorlancamentoentrada,
     //codentrada: lancamento.codentrada,
     //codsaida: lancamento.codsaida, 
-    info: this.textoEntraAnonimo.toString  
-  }).then((resultado: any) =>{
-    console.log("Resultado: ", resultado);
-    console.log(this.textoEntraAnonimo)
-  })
+    info: this.textoEntraAnonimo.toString
+  });
+  console.log("Resultado: ", resultado_1);
+  console.log(this.textoEntraAnonimo);
 }
 
-eftLancer(lancamento: any, emailUsuario : string, check: boolean): Promise<any> {
+  async eftLancer(lancamento: any, emailUsuario : string, check: boolean): Promise<any> {
 
  
-    return this.afs.collection('users').doc(emailUsuario).collection('lancamento_entrada').doc().set({
-      data : lancamento.datalancamentoentrada,    
-      valor: lancamento.valorlancamentoentrada,
-      //codentrada: lancamento.codentrada,
-      //codsaida: lancamento.codsaida, 
-      info: lancamento.infolancamentoentrada    
-    }).then((resultado: any) =>{
-      console.log("Resultado: ", resultado);
-    })
+    const resultado = await this.afs.collection('users').doc(emailUsuario).collection('lancamento_entrada').doc().set({
+    data: lancamento.datalancamentoentrada,
+    valor: lancamento.valorlancamentoentrada,
+    //codentrada: lancamento.codentrada,
+    //codsaida: lancamento.codsaida, 
+    info: lancamento.infolancamentoentrada
+  });
+  console.log("Resultado: ", resultado);
   
 
 
@@ -116,20 +111,20 @@ eftLancer(lancamento: any, emailUsuario : string, check: boolean): Promise<any> 
 
 
 
-  resetPassword(email: string, password: string): Promise<any>{
-    return this.afAuth.sendPasswordResetEmail(email)
-    .then(()=>{
+  async resetPassword(email: string, password: string): Promise<any>{
+    try {
+      await this.afAuth.sendPasswordResetEmail(email);
       console.log('Auth Service: ResetPassword: Success');
-    }).catch((error: { code: any; })=>{
+    } catch (error) {
       console.log('Auth Service: ResetPassword: Erro');
-      console.log('Error code' , error.code);
+      console.log('Error code', error);
       console.log('Erro:', error);
-      if(error.code){
-          return error
-      }else{
-        return "Error false"
+      if (error) {
+        return error;
+      } else {
+        return "Error false";
       }
-    })
+    }
   }
 
   async resendVericationEmail(){

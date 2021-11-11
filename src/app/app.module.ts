@@ -31,6 +31,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
 import { SinginComponent } from './login/singin/singin.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { HeaderComponent } from './menu/header/header.component';
 
 
 @NgModule({
@@ -52,7 +60,8 @@ import { SinginComponent } from './login/singin/singin.component';
     LancarSaidaComponent,
     ContaEntradaComponent,
     ContaSaidaComponent,
-    SinginComponent
+    SinginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -64,10 +73,18 @@ import { SinginComponent } from './login/singin/singin.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatListModule,
 
     NgxMaskModule.forRoot({
       dropSpecialCharacters: true
-       })
+       }),
+
+    BrowserAnimationsModule
 
     
    

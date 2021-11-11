@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   firebaseErrorMessage: string;
   user: Observable<any> = new Observable;
   verificaUserLogado : boolean = false;
+  sideBarOpen = true;
 
   constructor(private authService: AuthService, private router: Router, public afAuth: AngularFireAuth, private firestore: AngularFirestore) {
  this.isProgressVisible = false;
@@ -64,7 +65,10 @@ export class HomeComponent implements OnInit {
 }
 
 
-
+sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
+  
 
 
 }

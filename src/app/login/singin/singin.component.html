@@ -1,33 +1,164 @@
-<div >
+
+
+<div>
     <body class="text-center">
         <main class="form-signin">
+
+            <div class="modal fade" style="margin-top: 4%; margin-left: -100px;" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content" style="width: 800px;">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Cadastrar Cliente</h5>
+                      <button type="button" (click)="fecharModel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      
+                      
+                      
+                      
+                        <form [formGroup]="formCadastrarCliente" autocomplete="false">
+
+                            <div class="container" style="margin-left: 16%;">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="form-label" style="opacity: 100%;">
+                                            Nome:                                      
+                                        </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <input class="form-control" type="text" id="primeiroNome" formControlName="primeiroNome" required >                                  
+                                    </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                      <div class="col-md-4">
+                                          <label class="form-label" style="opacity: 100%;">
+                                            Sobrenome:                                      
+                                          </label>
+                                          </div>
+                                          <div class="col-md-6">
+                                          <input class="form-control" type="text" formControlName="sobrenome" id="sobrenome" required>                                  
+                                      </div>
+                                      <br>
+                                    </div>
+      
+      
+      
+                                    <div class="row">
+                                      <div class="col-md-4">
+                                          <label class="form-label" style="opacity: 100%;">
+                                             Display Name:                                      
+                                          </label>
+                                          </div>
+                                          <div class="col-md-6">
+                                          <input class="form-control" type="text" formControlName="displaynome" id="displaynome" required>                                  
+                                      </div>
+                                      <br>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-4">
+                                          <label class="form-label" style="opacity: 100%;">
+                                             E-mail:                                      
+                                          </label>
+                                          </div>
+                                          <div class="col-md-6">
+                                          <input class="form-control" type="email" formControlName="emailcadastro" id="emailcadastro" required>                                  
+                                      </div>
+                                      <br>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-4">
+                                          <label class="form-label" style="opacity: 100%;">
+                                             Telefone:                                      
+                                          </label>
+                                          </div>
+                                          <div class="col-md-6">
+                                          <input class="form-control" type="text" formControlName="telefone" id="telefone" required>                                  
+                                      </div>
+                                      <br>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-4">
+                                          <label class="form-label" style="opacity: 100%;">
+                                             Celular:                                      
+                                          </label>
+                                          </div>
+                                          <div class="col-md-6">
+                                          <input class="form-control" type="text" formControlName="celular" id="celular" required>                                  
+                                      </div>
+                                      <br>
+                                    </div>
+                                    <br>
+                                   
+                            </div>   
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="fecharModel()">CANCELAR</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"  (click)="cadastrarCliente()">ENVIAR INFORMAÇÕES</button>
+                              
+                              
+                            </div>
+
+                      </form> 
+
+
+
+
+                      ...
+                    </div>
+                   
+                  </div>
+                </div>
+              </div>
+
          
                 <div class="mt-4">
                     <img class="mb-4" src="/assets/imagens/65ab872f-fa8e-4b2b-bdd4-376c93f02752_uploads_destacklogo.png" alt="Destack 360" style="margin-right: 19px;">
                     <h1 class="h3 mb-3 fw-normal">Área Restrita</h1>
-            
-                    <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
-                        <p>
-                            <div appearance="outline">
-                                <label>Email</label>
-                                <input autocomplete="off" class="form-control" formControlName="email"  placeholder="E-mail">
+
+
+                    <div class="container-fluid">
+                        <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                            <p>
+                                <div class="row">
+                                    <div class="col-md">
+                                      <input type="text" class="form-control" formControlName="email" laceholder="E-mail" aria-label="e-mail" placeholder="E-mail" >
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md mt-3">
+                                      <input type="password" class="form-control" placeholder="Senha" formControlName="password" aria-label="password">
+                                    </div>
+                                </div>                            
+                            <div *ngIf="firebaseErrorMessage != ''" class="error-style">
+                                <span>{{ firebaseErrorMessage }}</span>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md mt-3">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                            <div class="row">
+                                <div class="col-md mt-3">
+                                    <label>Ainda não possui cadastro?  </label>                                    
+                                   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md mt-3">                                  
+                                        <a type="button" class="cliqueaqui" data-bs-toggle="modal" data-bs-target="#exampleModal">Clique aqui</a>
+                                   
+                                </div>
                             </div>
                        
-                            <div appearance="outline">
-                                <label>Password</label>
-                                <input autocomplete="off"  class="form-control"  formControlName="password" type="password" placeholder="Senha">
-                            </div>
-                        
-                        <div *ngIf="firebaseErrorMessage != ''" class="error-style">
-                            <span>{{ firebaseErrorMessage }}</span>
-                        </div>
-                
-                        <button mat-raised-button color="primary">Login</button>
-                        <button mat-raised-button color="primary" routerLink="/signup">
-                            <i>person_add</i>
-                            <span>Sign up</span>
-                        </button>
-                    </form>
+
+
+                    </div>
+            
+                   
                     <!---------------<p>Esqueceu a senha?</p>-------->
                     <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
                 </div>
